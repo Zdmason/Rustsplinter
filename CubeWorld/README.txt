@@ -1,21 +1,20 @@
-Current implementation for Rustsplinter (Cubeworld) as of 4/17/2019
-
-Current status: Midway through handling how attacks work, changing from flat "you do x damage with this weapon" to being based on velocity at the time of impact
-
+Current implementation for Rustsplinter (Cubeworld) as of 5/1/2019
 
 Made by Zackery Mason
 Available at (and probably downloaded from) ZackeryMason.com
 
 
+Current status: Just completed a slight gravity change, with update speed being changed from pure velocity from all angles to being based on when the target would actually pass through to the next square, including changes from acceleration midway. Next is making racial-archetypes, such as biological parts that require hearts and heal over time, robotic parts that require energy and have naturally high armor, etc.
+
+
 
 The current code is unplayable except in the debugger made specifically for my version of eclipse with the GDC plugin: aka, it won't work when you try to run it.
 This is here solely to get a glimpse of my code in all its unholy, barely commented glory.
-This was done by a single person, and wasn't exactly done in the mindset of being "user friendly" for other group members,
-But it certainly could be if the need presented itself.
-I know the code inside and out, so most of the comments are just little notes / reminders / suggestions to myself
+This was done by a single person, and wasn't exactly done in the mindset of being "user friendly" for other group members, but it certainly could be if the need presented itself.
+I know the code inside and out, so most of the comments are just little notes / reminders / suggestions to myself.
 
 
-This game engine is derived from the code for Trick of the Light (Gridworld), which I refactored to become "3d" from a 2d system, and some previous implementations aren't finished yet.
+This game engine is derived from the code for Trick of the Light (Gridworld), which I refactored to become "3d" from a 2d system, and some previous implementations from that version aren't finished yet.
 That means there are a few commented out functions in World.h and other places that should / will be in but aren't a priority yet.
 
 
@@ -40,13 +39,13 @@ The few interactable game objects are in Entities folder.
 --------- Destroying the brain = instant death, but typically limbs can be injured to the point bloodloss or other permanent damage renders the unit immobile and useless
 Gravity physics is handled in Physics/Gravity.cpp
 --- If things don't have functioning wings, they fall towards the ground.
---- Colliding with other things does damage, transfers some of the gravity between them and handles friction
+--- Colliding with other things does damage, transfers some of the gravity between them and handles friction afterwards
 ------ Things skid as they fly across the floor, rebound off walls, and hitting another mobile item makes them both fly away from eachother after handling collision damage
 Status effects are in Stati (currently just a levitation effect)
 --- Can be applied to specific item parts (Poison injected into an arm), can be encompassing of the whole connected blob (A spreading fire expanding from limb to limb), or may effect a unit personally without being connected to his item parts (A mind control spell)
 
 
-Some of the better / cooler code examples at the moment are: World::intRaycastHit/Path, World::starPath, World::moveUnit, Item::attach, Item::sever, Item::damage, Item::getBlob, Unit::canWalk
+Some of the better / cooler code examples at the moment are: World::intRaycastHit/Path, World::starPath, World::moveUnit, Item::attach, Item::sever, Item::damage, Item::getBlob, Unit::canWalk, Gravity::update
 I could go on for hours about the intricacies of designing / implimenting them, explanations about decision making and debugging, expected use cases and imagined scenarios. 
 
 Questions / comments / concerns / suggestions / death threats? Want to see more or get updates? Is there something apparantly wrong I don't seem to notice?
